@@ -47,7 +47,7 @@ function mainFunction() {
 
   sizeInput.addEventListener("change", function (e) {
     size = e.target.value;
-    sizeDisplay.textContent = size;
+    sizeDisplay.textContent = `${size} x ${size}`;
     clearGrid();
     drawGrid();
   });
@@ -74,7 +74,6 @@ function mainFunction() {
     isDrawing = false;
   }
 
-  // functions
   function clearGrid() {
     while (grid.firstChild) {
       grid.removeChild(grid.firstChild);
