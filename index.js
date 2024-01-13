@@ -16,6 +16,7 @@ function mainFunction() {
   let color = "#000000";
   let size = 16;
   let mode = "normalMode";
+  let isDrawing = false;
 
   // initial run
   drawGrid();
@@ -42,17 +43,39 @@ function mainFunction() {
     e.target.classList.add("active");
   }
 
-  clearButton.addEventListener("click", clearCanvas);
+  clearButton.addEventListener("click", clearGrid);
 
   sizeInput.addEventListener("change", function (e) {
     size = e.target.value;
     sizeDisplay.textContent = size;
-    clearCanvas();
+    clearGrid();
     drawGrid();
   });
 
+  grid.addEventListener("mousedown", startDrawing);
+  grid.addEventListener("mousemove", draw);
+  grid.addEventListener("mouseup", stopDrawing);
+  grid.addEventListener("mouseleave", stopDrawing);
+
+  function startDrawing(e) {
+    if (e.button === 0) { // left click
+      isDrawing = true;
+      draw(e); // Draw initial cell when starting to click and drag
+    }
+  }
+
+  function draw(e) {
+    if (isDrawing) {
+      paintCell(e);
+    }
+  }
+
+  function stopDrawing() {
+    isDrawing = false;
+  }
+
   // functions
-  function clearCanvas() {
+  function clearGrid() {
     while (grid.firstChild) {
       grid.removeChild(grid.firstChild);
     }
@@ -65,12 +88,8 @@ function mainFunction() {
       let gridItem = document.createElement("div");
       gridItem.classList.add("grid-item");
 
-      // add event listener
-      gridItem.addEventListener("click", paintEvent);
-
       grid.appendChild(gridItem);
     }
-    // set grid-template-columns and grid-template-rows
     grid.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
     grid.style.gridTemplateRows = `repeat(${size}, 1fr)`;
   }
@@ -91,13 +110,6 @@ function mainFunction() {
       cell.style.backgroundColor = getRandomColor();
     } else if (mode === "eraser") {
       cell.style.backgroundColor = "#ffffff";
-    }
-  }
-
-  function paintEvent(e) {
-    if (e.button === 0) {
-      // check if it's left click
-      paintCell(e);
     }
   }
 }
