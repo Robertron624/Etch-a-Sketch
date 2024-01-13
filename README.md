@@ -25,8 +25,8 @@ This is a simple Etch-a-Sketch game made with HTML, CSS and JavaScript. It is pa
 
 ## Live Demo
 
-[Click here](https://Robetron624.github.io/etch-a-sketch/) for a live demo.
+[Click here](https://robertron624.github.io/Etch-a-Sketch/) for a live demo.
 
 ## Preview
 
-![Preview](./preview.png)
+![image](https://github.com/Robertron624/Etch-a-Sketch/assets/72587880/32fa1ffb-c3cb-40fd-899f-a74d043bfa9f)
