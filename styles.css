@@ -211,6 +211,11 @@ main > h1 {
     transition: all .2s ease-in-out;
 }
 
+#controls .control-buttons button.active {
+    background-color: #252323;
+    color: #fff;
+}
+
 #controls .control-buttons button:hover {
     background-color: #252323;
     color: #fff;
